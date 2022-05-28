@@ -1,0 +1,6 @@
+project: rnshah9/libelektra
+target: libelektra
+tests: null
+
+cmds:
+  - cmd: /opt/elektra/build/bin/kdb shell
