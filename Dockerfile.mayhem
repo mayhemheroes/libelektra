@@ -43,5 +43,5 @@ RUN ldd /opt/elektra/build/bin/kdb | tr -s '[:blank:]' '\n' | grep '^/' | xargs 
 FROM alpine:3.15.0 as package
 
 COPY --from=builder /deps /deps
-COPY --from=builder /opt/elektra/build/bin/kdb /opt/elektra/build/bin/kdb
+COPY --from=builder /opt/elektra /opt/elektra
 ENV LD_LIBRARY_PATH=/deps
