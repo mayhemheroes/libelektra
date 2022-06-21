@@ -1,23 +1,23 @@
-FROM alpine:3.15.0
+FROM alpine:3.15.0 as builder
 
 RUN apk update \
     && apk add --no-cache --upgrade\
-        augeas \
-        augeas-dev \
-        bash \
-        bison \
-        build-base \
-        cmake \
-        curl \
-        git \
-        libgit2 \
-        libgit2-dev \
-        ninja \
-        sudo \
-        yajl \
-        yajl-dev \
-        yaml-cpp \
-        yaml-cpp-dev
+    augeas \
+    augeas-dev \
+    bash \
+    bison \
+    build-base \
+    cmake \
+    curl \
+    git \
+    libgit2 \
+    libgit2-dev \
+    ninja \
+    sudo \
+    yajl \
+    yajl-dev \
+    yaml-cpp \
+    yaml-cpp-dev
 
 ENV ELEKTRA_ROOT=/opt/elektra
 ENV ELEKTRA_RELEASE=0.9.9
@@ -28,12 +28,20 @@ ENV PARALLEL=8
 RUN mkdir build \
     && cd build \
     && cmake -DPLUGINS="ALL;-date" \
-             -DTOOLS="ALL" \
-             -DENABLE_DEBUG="OFF" \
-             -DENABLE_LOGGER="OFF" \
-             -DCMAKE_BUILD_TYPE="Release" \
-             -DKDB_DB_SYSTEM='/home/elektra/.config/kdb/system' \
-             -DKDB_DB_SPEC='/home/elektra/.config/kdb/spec' \
-             -DKDB_DB_HOME='/home/elektra/.config/kdb/home' \
-             .. \
+    -DTOOLS="ALL" \
+    -DENABLE_DEBUG="OFF" \
+    -DENABLE_LOGGER="OFF" \
+    -DCMAKE_BUILD_TYPE="Release" \
+    -DKDB_DB_SYSTEM='/home/elektra/.config/kdb/system' \
+    -DKDB_DB_SPEC='/home/elektra/.config/kdb/spec' \
+    -DKDB_DB_HOME='/home/elektra/.config/kdb/home' \
+    .. \
     && make -j ${PARALLEL}
+RUN mkdir -p /deps
+RUN ldd /opt/elektra/build/bin/kdb | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+
+FROM alpine:3.15.0 as package
+
+COPY --from=builder /deps /deps
+COPY --from=builder /opt/elektra/build/bin/kdb /opt/elektra/build/bin/kdb
+ENV LD_LIBRARY_PATH=/deps
