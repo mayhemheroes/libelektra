@@ -2,4 +2,4 @@ project: libelektra
 target: kdb
 
 cmds:
-  - cmd: /opt/elektra/build/bin/kdb shell
+  - cmd: /kdb shell

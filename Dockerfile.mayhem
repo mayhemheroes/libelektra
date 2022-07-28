@@ -37,11 +37,10 @@ RUN mkdir build \
     -DKDB_DB_HOME='/home/elektra/.config/kdb/home' \
     .. \
     && make -j ${PARALLEL}
-RUN mkdir -p /deps
-RUN ldd /opt/elektra/build/bin/kdb | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
-
 FROM alpine:3.15.0 as package
-
-COPY --from=builder /deps /deps
-COPY --from=builder /opt/elektra /opt/elektra
-ENV LD_LIBRARY_PATH=/deps
+RUN apk update \
+    && apk add --no-cache --upgrade\
+    build-base libgit2
+COPY --from=builder /opt/elektra/build/bin/kdb /
+COPY --from=builder /opt/elektra/build/lib /install/lib
+ENV LD_LIBRARY_PATH=/install/lib
