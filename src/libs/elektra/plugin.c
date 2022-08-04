@@ -10,10 +10,6 @@
 #include "kdbconfig.h"
 #endif
 
-#if DEBUG && defined(HAVE_STDIO_H)
-#include <stdio.h>
-#endif
-
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
 #endif
@@ -34,10 +30,6 @@
 #include <string.h>
 #endif
 
-#ifdef HAVE_STDIO_H
-#include <stdio.h>
-#endif
-
 #include <kdbassert.h>
 #include <kdberrors.h>
 #include <kdbinternal.h>
@@ -50,7 +42,7 @@
  *         back referencing.
  * @retval -1 on error
  */
-int elektraProcessPlugin (Key * cur, int * pluginNumber, char ** pluginName, char ** referenceName, Key * errorKey)
+int elektraProcessPlugin (const Key * cur, int * pluginNumber, char ** pluginName, char ** referenceName, Key * errorKey)
 {
 	const char * fullname = keyBaseName (cur);
 	size_t fullsize = keyGetBaseNameSize (cur);

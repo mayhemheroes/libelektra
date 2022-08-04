@@ -2,15 +2,28 @@
 
 This release did not happen yet.
 
-Please update this file within PRs accordingly.
-For non-trivial changes, you can choose to be
-part of the highlighted changes.
+Please always update this file within **every PR**:
 
-Please add your name at the end of every contribution.
-**Syntax:** _(your name)_
+1. write what changed
+2. use links pointing to your change
+3. add your name at the end of the line **Syntax:** _(your name)_
+
+For example, Max would write:
+
+```
+- Added a new [doc plugin](/src/plugins/doc) _(Max)_
+```
 
 Pick a random line to write your changes to minimize
 the chances of conflicts in this file.
+
+For non-trivial changes, you can choose to be
+part of the highlighted changes.
+Please write a highlight section in this case.
+
+After the horizontal line the release notes for the next version starts.
+
+---
 
 <<`scripts/generate-news-entry`>>
 
@@ -48,22 +61,15 @@ docker run -it elektra/elektra
 
 The following section lists news about the [plugins](https://www.libelektra.org/plugins/readme) we updated in this release.
 
-### Python
-
-- Added new DNS plugin _(Lukas Hartl @lukashartl, Leonard Guelmino @leothetryhard)_
-- <<TODO>>
-- <<TODO>>
-
 ### <<Plugin>>
 
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
 
-### lineendings - Plugin
+### <<Plugin>>
 
-- Enable emitting of warnings during kdbGet(), refactor and update methods and return values to match the conventions
-  (e.g. #defined constants for return values) _(Michael Langhammer @milangs, Florian Lindner @flo91)_
+- <<TODO>>
 - <<TODO>>
 - <<TODO>>
 
@@ -85,19 +91,9 @@ The following section lists news about the [plugins](https://www.libelektra.org/
 - <<TODO>>
 - <<TODO>>
 
-### Length
-
-- Warnings are now added on `kdb get` _(@mandoway)_
-
 ### <<Plugin>>
 
 - <<TODO>>
-- <<TODO>>
-- <<TODO>>
-
-### Sorted
-
-- Added new validation plugin: Sorted. It checks whether an Elektra array is sorted by its value or a given key in a configurable direction _(@mandoway @Gratla)_
 - <<TODO>>
 - <<TODO>>
 
@@ -152,16 +148,6 @@ The text below summarizes updates to the [C (and C++)-based libraries](https://w
 Bindings allow you to utilize Elektra using [various programming languages](https://www.libelektra.org/bindings/readme). This section keeps
 you up-to-date with the multi-language support provided by Elektra.
 
-### Java
-
-- Added a java example for meta keys and arrays _(@mandoway)_
-
-### JNA
-
-- Added example which shows how to add a basename for a key. _(Philipp Leeb @Gratla)_
-- <<TODO>>
-- <<TODO>>
-
 ### <<Binding>>
 
 - <<TODO>>
@@ -174,39 +160,23 @@ you up-to-date with the multi-language support provided by Elektra.
 - <<TODO>>
 - <<TODO>>
 
-### Kotlin
+### <<Binding>>
 
-- Added new JNA subproject which builds an Elektra extension library for Kotlin _(@mandoway & @Gratla)_
-- Added get(), getOrNull(), getOrDefault(), getOrElse() extension with type inference for primitive types _(@mandoway)_
-- Added set() extension with type inference for primitive types _(@mandoway)_
-- Added keySet serialization capabilities (to JSON and data classes, with array support) _(@mandoway)_
-- Added keyOf() extension and keyOf{} builder for key creation _(@Gratla)_
-- Added keySetOf() extension and keySetOf{} builder for keySet creation _(@Gratla)_
-- Added withKDB() extension which wraps the try block _(@Gratla)_
-- Added forEachKeyName() extension which iterates like in keyNameIterator _(@mandoway)_
-
-### Python
-
-- Deleted occurrences of removed property key.fullname _(@mandoway)_
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
 
 ## Tools
 
-### elektrad
+### <<Tool>>
 
-- improve logging in `elektrad` _(Lukas Hartl @lukashartl, Leonard Guelmino @leothetryhard)_
 - <<TODO>>
-- <<TODO>>
-
-### `webui`
-
-- fix issues from namespace-overhaul _(Lukas Hartl @lukashartl, Leonard Guelmino @leothetryhard)_
-- apply non-breaking updates to packages _(Leonard Guelmino @leothetryhard, Lukas Hartl @lukashartl)_
 - <<TODO>>
 - <<TODO>>
 
-### `webd`
+### <<Tool>>
 
-- fix path building for requests to `elektrad` _(Lukas Hartl @lukashartl, Leonard Guelmino @leothetryhard)_
+- <<TODO>>
 - <<TODO>>
 - <<TODO>>
 
@@ -239,47 +209,43 @@ you up-to-date with the multi-language support provided by Elektra.
 
 ## Documentation
 
-- Small readability improvement _(@Toniboyyy)_
-- Python: add guide for Debian 11 (bullseye) _(Lukas Hartl @lukashartl)_
-- Fix some errors in the tutorials `Cascading Lookups` and `Command-line Options` _(Florian Lindner @flo91)_
 - <<TODO>>
-- Extend and update the tutorial for writing specifications,
-  add section about using specs in production _(Florian Lindner @flo91)_
 - <<TODO>>
-- Add readme-file about cm2022s project (/doc/dev/iterators.md) _(Florian Lindner @flo91)_
+- Decisions for changes to `keyIsBelow` and new `keyGetNextPart` functions _(@kodebach)_
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
-- Improve jna documentation _(Burkhard Hampl @bhampl)_
-- <<TODO>>
-- Add Stream API example in Java binding documentation _(Richard Stöckl @Eiskasten)_
-- Add Stream API example in Java binding documentation \_(Richard Stöckl @Eiskasten)
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
-- Minor readability improvement _(@mandoway)_
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
-- Minor readability improvement in `CODING.md` _(@loessberth)_
-- <<TODO>>
-- <<TODO>>
-- Fix dead link and compile instructions _(Burkhard Hampl @bhampl)_
-- Update links from certificate section _(Richard Stöckl @Eiskasten)_
-- <<TODO>>
-- <<TODO>>
-- Fix wrong KDBException reference in java tutorial and improve it _(Burkhard Hampl @bhampl and Richard Stöckl @Eiskasten)_
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
+- More decisions _(@kodebach)_
 
 ### Tutorials
 
 - <<TODO>>
-- The tutorial for [Contributing from Windows](../tutorials/contributing-windows.md) has been updated. _(@kodebach)_
-- The tutorial for [CLion](../tutorials/contributing-clion.md) now contains a section for setting up the WSL compiler _(@mandoway)_
 - <<TODO>>
-- Rephrased sentence in code-generator.md to enhance readability _(@Gratla)_
+- <<TODO>>
+- <<TODO>>
+- <<TODO>>
 - <<TODO>>
 
 ### Man Pages
@@ -294,10 +260,10 @@ you up-to-date with the multi-language support provided by Elektra.
 
 ## Tests
 
-- Add tests for the Error/Warnings-Factory in libtools _(Florian Lindner @flo91)_
-- Add tests for keySet in the python binary _(Lukas Hartl @lukashartl, Leonard Guelmino @leothetryhard)_
+- Use GoogleTest framework v1.12.1. _(Mihael Pranjić @mpranj)_
 - <<TODO>>
-- Added test for JNA KDB which checks if both get-method implementations return the same result. _(Philipp Leeb @Gratla)_
+- <<TODO>>
+- <<TODO>>
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
@@ -350,7 +316,7 @@ you up-to-date with the multi-language support provided by Elektra.
 
 ### CMake
 
-- CMake now automatically detects all JNA plugins that are added to Gradle. _(@kodebach)_
+- <<TODO>>
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
@@ -359,7 +325,7 @@ you up-to-date with the multi-language support provided by Elektra.
 
 ### Docker
 
-- <<TODO>>
+- Bump Alpine Linux to 3.16.0. _(Mihael Pranjić @mpranj)_
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>
@@ -395,16 +361,12 @@ you up-to-date with the multi-language support provided by Elektra.
 - <<TODO>>
 - <<TODO>>
 
-### Git
-
-- We added a `.gitattributes` file to make it easier to build Elektra with WSL. _(@kodebach)_
-
 ## Website
 
 The website is generated from the repository, so all information about
 plugins, bindings and tools are always up-to-date. Furthermore, we changed:
 
-- Overhauled the `Get Started` page by adding a brief `kdb` introduction. _(@Milangs)_
+- <<TODO>>
 - <<TODO>>
 - <<TODO>>
 - <<TODO>>

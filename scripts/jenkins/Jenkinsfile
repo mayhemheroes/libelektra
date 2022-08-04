@@ -334,8 +334,8 @@ def dockerInit() {
      */
     DOCKER_IMAGES.alpine = dockerUtils.createDockerImageDesc(
       "alpine", dockerUtils.&idTesting,
-      "./scripts/docker/alpine/3.15",
-      "./scripts/docker/alpine/3.15/Dockerfile"
+      "./scripts/docker/alpine/3.16",
+      "./scripts/docker/alpine/3.16/Dockerfile"
     )
 
     /* Ubuntu bionic image*/
@@ -1231,7 +1231,7 @@ def generateArtifactStages() {
   // tasks << buildOpenwrtPackage(DOCKER_IMAGES.openwrt_sdk)
 
   tasks << buildWebsite()
-  // tasks << buildWebUI()
+  tasks << buildWebUI()
 
   return tasks
 }
