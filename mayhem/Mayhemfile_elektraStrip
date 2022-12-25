@@ -1,0 +1,6 @@
+project: libelektra
+target: elektrastrip
+
+cmds:
+  - cmd: /fuzz_elektraStrip
+    libfuzzer: true

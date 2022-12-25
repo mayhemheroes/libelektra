@@ -59,7 +59,8 @@ jobs:
       fail-fast: false
       matrix:
         mayhemfile:
-          - mayhem/Mayhemfile
+          - mayhem/Mayhemfile_elektraStrip
+          - mayhem/Mayhemfile_kdb
 
     steps:
       - uses: actions/checkout@v3

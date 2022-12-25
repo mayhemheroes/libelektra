@@ -1,23 +1,20 @@
-FROM alpine:3.15.0 as builder
+FROM ubuntu:22.04 as builder
 
-RUN apk update \
-    && apk add --no-cache --upgrade\
-    augeas \
-    augeas-dev \
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    libaugeas-dev \
     bash \
     bison \
-    build-base \
+    build-essential \
     cmake \
     curl \
     git \
-    libgit2 \
     libgit2-dev \
-    ninja \
+    ninja-build \
     sudo \
-    yajl \
-    yajl-dev \
-    yaml-cpp \
-    yaml-cpp-dev
+    libyajl-dev \
+    libyaml-cpp-dev \
+    clang
 
 ENV ELEKTRA_ROOT=/opt/elektra
 ENV ELEKTRA_RELEASE=0.9.9
@@ -37,10 +34,12 @@ RUN mkdir build \
     -DKDB_DB_HOME='/home/elektra/.config/kdb/home' \
     .. \
     && make -j ${PARALLEL}
-FROM alpine:3.15.0 as package
-RUN apk update \
-    && apk add --no-cache --upgrade\
-    build-base libgit2
+RUN clang++ /opt/elektra/mayhem/fuzz_elektraStrip.cpp -fsanitize=fuzzer,address /opt/elektra/build/lib/libelektra-utility.so -o /fuzz
+
+FROM ubuntu:22.04 as package
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libgit2-dev build-essential
 COPY --from=builder /opt/elektra/build/bin/kdb /
 COPY --from=builder /opt/elektra/build/lib /install/lib
+COPY --from=builder /fuzz /fuzz_elektraStrip
 ENV LD_LIBRARY_PATH=/install/lib
