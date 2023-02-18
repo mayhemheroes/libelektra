@@ -1,0 +1,5 @@
+project: libelektra
+target: kdb
+
+cmds:
+  - cmd: /kdb shell
