@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as builder
+FROM ubuntu:22.04 AS builder
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -36,7 +36,7 @@ RUN mkdir build \
     && make -j ${PARALLEL}
 RUN clang++ /opt/elektra/mayhem/fuzz_elektraStrip.cpp -fsanitize=fuzzer,address /opt/elektra/build/lib/libelektra-utility.so -o /fuzz
 
-FROM ubuntu:22.04 as package
+FROM ubuntu:22.04 AS package
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libgit2-dev build-essential
 COPY --from=builder /opt/elektra/build/bin/kdb /
